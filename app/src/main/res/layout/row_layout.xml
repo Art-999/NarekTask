@@ -4,24 +4,23 @@
     android:layout_height="75dp">
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_id"
         android:layout_width="120dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:gravity="center"
         android:text="Artur" />
     <TextView
-        android:id="@+id/tv_mail"
+        android:id="@+id/tv_name"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/tv_id"
+        android:text="M_yan"
+        android:gravity="center"/>
+    <ImageView
+        android:id="@+id/iv_image"
         android:layout_width="120dp"
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/tv_name"
-        android:text="M_yan"
-        android:gravity="center"/>
-    <TextView
-        android:id="@+id/tv_mobile"
-        android:layout_width="120dp"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/tv_mail"
-        android:text="077000001"
         android:gravity="center"/>
 </RelativeLayout>

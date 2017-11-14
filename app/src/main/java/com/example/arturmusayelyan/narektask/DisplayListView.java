@@ -10,21 +10,34 @@ import org.json.JSONObject;
 
 public class DisplayListView extends AppCompatActivity {
     ListView listView;
-    String JSON_STRING_ARRAY;
-    JSONObject jsonObject;
+
+    String valueFromRequest;
     JSONArray jsonArray;
+
+    ContactAdapter contactAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_listview_layout);
         listView = (ListView) findViewById(R.id.listView1);
+        contactAdapter = new ContactAdapter(this, R.layout.row_layout);
+        listView.setAdapter(contactAdapter);
 
-        JSON_STRING_ARRAY = getIntent().getExtras().getString("json_data");
+        valueFromRequest = getIntent().getExtras().getString("json_data");
 
         try {
-            jsonObject=new JSONObject(JSON_STRING_ARRAY);
-            int count;
+            jsonArray = new JSONArray(valueFromRequest);
+            String id, name, image;
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject JO = jsonArray.getJSONObject(i);
+                id = JO.getString("category_id");
+                name = JO.getString("category_name");
+                image = JO.getString("category_image");
+                Contacts contacts = new Contacts(id, name, image);
+                contactAdapter.add(contacts);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

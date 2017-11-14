@@ -19,7 +19,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     String JSON_STRING;
 
-    String JSON_STRING_ARRAY;
+    String valueFromRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
             new BackgroundTask().execute();
         }
         else if(view.getId()==R.id.parseJson_button){
-                if(JSON_STRING_ARRAY==null){
+                if(valueFromRequest ==null){
                     Toast.makeText(this,"First Get JSON",Toast.LENGTH_LONG).show();
                 }
                 else {
                     Intent intent=new Intent(this,DisplayListView.class);
-                    intent.putExtra("json_data",JSON_STRING_ARRAY);
+                    intent.putExtra("json_data", valueFromRequest);
                     startActivity(intent);
                 }
         }
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) findViewById(R.id.json_textView);
             textView.setText(result);
 
-            JSON_STRING_ARRAY=result;
+            valueFromRequest =result;
         }
     }
 }
